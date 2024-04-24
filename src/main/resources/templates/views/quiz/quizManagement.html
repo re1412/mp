@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<head>
+    <title>Main Page</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="content">
+        <div class="write-title">퀴즈 관리</div>
+        <div class="write-form">
+            <form id="insertData">
+                <table style="width: -webkit-fill-available;">
+                    <colgroup>
+                        <col width="40%"/>
+                        <col width="15%"/>
+                        <col width="30%"/>
+                        <col width="15%"/>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="write-form-th">Question</th>
+                            <th class="write-form-th">Answer</th>
+                            <th class="write-form-th">Hint</th>
+                            <th class="write-form-th" style="min-width: 146px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody name="quizData">
+                        <tr th:each="game : ${games}">
+                            <td class="write-form-td"><input type="text" name="question" class="add-input" th:value="${game.question}"/></td>
+                            <td class="write-form-td"><input type="text" name="answer" class="add-input" th:value="${game.answer}"/></td>
+                            <td class="write-form-td">
+                                <div th:if="${game.hint} == null" >
+                                    <input type="hidden" name="hintId" value=""/>
+                                    <input type="text" name="hint" class="add-input" value=""/>
+                                </div>
+                                <div th:unless="${game.hint} == null" >
+                                    <input type="hidden" name="hintId" th:value="${game.hint.hintId}"/>
+                                    <input type="text" name="hint" class="add-input" th:value="${game.hint.hint}"/>
+                                </div>
+                            </td>
+                            <td class="write-form-td">
+                                <input type="hidden" name="userId" th:value="${user.userId}"/>
+                                <input type="hidden" name="gameId" th:value="${game.gameId}"/>
+                                <button type="button" name="updateButton" class="update-button">수정</button>
+                                <button type="button" name="deleteButton" class="delete-button">삭제</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            <button type="button" id="addButton" class="add-button" style="float: left;">
+                <i class="fa-solid fa-plus"></i> 추가
+            </button>
+            <button type="button" id="insertButton" class="add-button" style="float: right;">등록</button>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>

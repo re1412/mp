@@ -1,0 +1,83 @@
+/* 공통 체크박스 스타일 */
+a { text-decoration-line: none; }
+.check-form {position:relative ; margin-bottom:20px;}
+.check-form input[type="checkbox"] {position:absolute;top:0;left:0;width:0;height:0;opacity:0;outline:0;z-index:-1;overflow:hidden}
+.check-form input[type="checkbox"] + label {position:relative;padding-left:20px;color:#fff}
+.check-form input[type="checkbox"] + label:hover{color:#2172f8}
+.check-form input[type="checkbox"] + label span {position:absolute;top:2px;left:0;width:15px;height:15px;display:block;margin:0;background:transparent;border:1px solid #d0d4df;border-radius:3px}
+.check-form input[type="checkbox"] + label span > i{display:none;}
+.check-form input[type="checkbox"]:checked + label {color:#f1f1f1}
+.check-form input[type="checkbox"]:checked + label span { border-radius:3px}
+.check-form input[type="checkbox"]:checked + label span > i{ display:block;color:#fff;}
+.submit-button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.page {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+.pagination {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin-top: 20px;
+}
+.pagination li {
+    display: inline;
+    text-align: center;
+}
+.pagination a {
+    float: left;
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 12px;
+    color: #96a0ad;
+    line-height: 1.5;
+}
+.first {
+    margin-right: 15px;
+}
+.last {
+    margin-left: 15px;
+}
+.first:hover, .last:hover, .left:hover, .right:hover{
+    color: #2e9cdf;
+}
+.pagination a.active {
+    cursor: default;
+    color: #fff;
+}
+.pagination a:active {
+    outline: none;
+}
+.modal .num {
+    margin-left: 3px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+}
+.modal .num:hover {
+    background-color: #2e9cdf;
+    color: #fff;
+}
+.modal .num.active, .modal .num:active {
+    background-color: #2e9cdf;
+    cursor: pointer;
+}
+.arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid blue;
+}

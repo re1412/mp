@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>로그인</title>
+    <link rel="stylesheet" th:href="@{/css/library/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <script th:src="@{/js/library/jquery-2.1.3.min.js}"></script>
+    <script th:src="@{/js/library/angular-1.2.5.min.js}"></script>
+    <script th:src="@{/js/login/login.js}"></script>
+</head>
+<body>
+    <div class="login-page" ng-app="">
+        <div class="login-content login-content-signin" ng-hide="showSignIn">
+            <div>
+                <h2>Log in</h2>
+                <form id="loginForm" class="wrapper-box" action="log-proc" th:action="@{/log-proc}" onsubmit="return frm_check();" method="post" role="form">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+                    <input type="hidden" name="_csrf_header" th:value="${_csrf.headerName}" />
+                    <div class="login-form">
+                        <input type="text" name="username" id="username" class="form-control form-control-email" value="" placeholder="아이디" required="required" spellcheck="false" />
+                        <input type="password" name="password" id="password" class="form-control form-control-password" value="" placeholder="비밀번호" required="required" />
+                        <div style="margin-top:10px; font-size:12px;">
+                            <span style="color:red" th:text="${login}"></span>
+                        </div>
+                        <div class="checkbox-form">
+                            <input type="checkbox" id="keep" style="cursor:pointer;">
+                            <label for="keep" style="cursor:pointer;">
+                                <span class=""><i class="fa fa-check" aria-hidden="true"></i></span>아이디 저장
+                            </label>
+                        </div>
+                        <button type="submit" id="loginButton" class="btn btn-submit btn-default pull-right">로그인</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="login-content login-content-signup ng-hide" ng-show="showSignIn">
+            <div>
+                <h2>Sign Up</h2>
+                <form id="joinForm" class="wrapper-box">
+                    <input type="text" id="joinId"
+                           class="form-control"
+                           placeholder="아이디"
+                           required >
+                    <span id="joinIdRule" class="join-rule">아이디: 5~20자의 영문 소문자, 숫자만 사용 가능합니다.</span>
+                    <span id="joinIdDuplicate" class="join-rule">아이디: 사용할 수 없는 아이디입니다. 다른 아이디를 입력해 주세요.</span>
+                    <input type="hidden" id="joinIdFlag" value="false" />
+                    <input type="text" id="joinName"
+                           class="form-control"
+                           placeholder="닉네임"
+                           required >
+                    <span id="joinNameRule" class="join-rule">닉네임: 2~16자로 사용해 주세요.</span>
+                    <input type="hidden" id="joinNameFlag" value="false" />
+                    <input type="password" id="joinPassword"
+                           class="form-control"
+                           placeholder="비밀번호"
+                           required >
+                    <span id="joinPasswordRule" class="join-rule">비밀번호: 6~16자로 사용해 주세요.</span>
+                    <input type="hidden" id="joinPasswordFlag" value="false" />
+                    <input type="password" id="joinPasswordConfirm"
+                           class="form-control"
+                           placeholder="비밀번호 확인"
+                           required >
+                    <span id="joinPasswordConfirmRule" class="join-rule">비밀번호 확인: 비밀번호와 일치하지 않습니다.</span>
+                    <input type="hidden" id="joinPasswordConfirmFlag" value="false" />
+                    <button type="button" id="joinButton" class="btn btn-submit btn-default pull-right">회원가입</button>
+                    <span id="joinConfirmRule" class="join-rule" style="margin-top:40px;">회원 정보를 확인해 주세요.</span>
+                </form>
+                <div id="joinCompleteForm" class="join-complete-font">회원가입이 완료되었습니다. <br>로그인 해주세요.</div>
+            </div>
+        </div>
+        <div class="login-switcher">
+            <div class="login-switcher-signin" ng-show="showSignIn">
+                <button ng-click="showSignIn=false">로그인</button>
+            </div>
+            <div class="login-switcher-signup" ng-hide="showSignIn">
+                <button ng-click="showSignIn=true">회원가입</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

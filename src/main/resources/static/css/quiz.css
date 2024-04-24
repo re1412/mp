@@ -1,0 +1,155 @@
+body {
+  margin: 50px;
+}
+.quiz-title{
+    font-weight: bold;
+    font-size: 24px;
+    position: relative;
+    top: -70px;
+    right: -40px;
+}
+blockquote{
+  position: relative;
+  display: inline-block;
+  width: -webkit-fill-available;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #666;
+  border: solid 1px #98A81B;
+}
+
+.blockquote-background {
+  background: #F5F6E8;
+  padding: 20px;
+}
+
+blockquote::before{
+  content: "\201C";
+  background-color: #FFF;
+  border-radius: 50%;
+  width: 75px;
+  height:75px;
+  font-size: 60px;
+  font-weight: bold;
+  color: #98A81B;
+  text-align: center;
+  line-height: 93px;
+  position: absolute;
+  left: -30px;
+  top: -30px;
+}
+
+blockquote::after{
+  content: "";
+}
+.quiz-form{
+    margin-bottom: 35px;
+    padding-bottom: 35px;
+}
+.quiz-content{
+    content: "";
+    width: 100%;
+    display: table;
+    clear: both;
+}
+.quiz-creator{
+    position: relative;
+    float: right;
+    font-weight: bold;
+    padding-right: 40px;
+    color: #818017;
+    font-size: 13px;
+    bottom: -10px;
+}
+.quiz-question{
+    font-size: 20px;
+    font-weight: bold;
+}
+.quiz-hint{
+    font-size: 14px;
+    margin-top: 30px;
+}
+.quiz-solver{
+    float: left;
+    padding-top: 40px;
+    font-weight: bold;
+}
+.quiz-answer{
+    float: right;
+    padding-top: 40px;
+    font-weight: bold;
+}
+.write-title{
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.write-form-th{
+    border-top: solid 2px #29c38d;
+    line-height: 2;
+}
+.write-form-td{
+    border-top: solid 1px #fff;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+.quiz-input{
+    margin-left: 40px;
+    margin-right: 40px;
+    width: -webkit-fill-available;
+    border-radius: 5px;
+    border: solid 2px #98A81B;
+    color: #000;
+    padding: 10px;
+    height: 15px;
+    background: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    outline: none;
+}
+.add-input{
+    margin: 0px;
+    width: -webkit-fill-available;
+    border-radius: 5px;
+    border: solid 0px #fff;
+    color: #000;
+    padding: 10px;
+    height: 15px;
+    background: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    outline: none;
+}
+.delete-button{
+    position: relative;
+    padding: 0.50rem 1.25rem;
+    color: #fff;
+    background: hsl(354, 81%, 63%);
+    border: 1px solid hsl(354.12deg 80.95% 62.94%);
+    border-radius: 4px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.update-button{
+    position: relative;
+    padding: 0.50rem 1.25rem;
+    color: #fff;
+    background: hsl(165, 58%, 55%);
+    border: 1px solid hsl(165, 58%, 55%);
+    border-radius: 4px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.add-button{
+    position: relative;
+    padding: 0.50rem 1.25rem;
+    margin-top:80px;
+    color: #fff;
+    background: hsl(196, 78%, 61%);
+    border: 1px solid hsl(196, 78%, 61%);
+    border-radius: 4px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="ko">
+<head>
+    <th:block th:replace="fragments/commonHead"></th:block>
+</head>
+<body>
+<div class="dim"> </div>
+<div class="wrap">
+    <div class="cont-wrap">
+        <div class="lay-left">
+            <div class="login-user">
+                <th:block th:replace="~{fragments/sidebar :: sidebar}"/>
+            </div>
+        </div>
+        <div class="lay-right">
+            <div class="lay-work-area">
+                <div id="contents-wrap" class="contents-style">
+                    <!-- 각 화면 컨텐츠 -->
+                    <div class="tab-content">
+                        <th:block layout:fragment="content" />
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <footer th:replace="~{fragments/footer :: footer}" />
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

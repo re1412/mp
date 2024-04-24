@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<head>
+    <title>Main Page</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="content">
+        <div class="quiz-title">Quiz</div>
+        <div th:each="game : ${games.content}" class="quiz-form">
+            <span class="quiz-creator" th:text="|출제자 : ${game.users.name}|" />
+            <blockquote>
+                <div class="blockquote-background">
+                    <div class="quiz-content">
+                        <div class="quiz-question"><span th:text="${game.question}" /></div>
+                        <div class="quiz-hint">
+                            <span th:unless="${game.hint} == null" th:text="|힌트 : ${game.hint.hint}|" />
+                        </div>
+                        <div class="quiz-solver">
+                            <span th:if="${#lists.isEmpty(game.score)}">맞춘사람 : <span name="solver"></span></span>
+                            <span th:unless="${#lists.isEmpty(game.score)}">맞춘사람 : <span th:text="${game.score[0].users.name}"></span></span>
+                        </div>
+                        <div class="quiz-answer">
+                            <span>정답 : <span name="plainAnswer"></span>
+                                <span th:if="${game.users.userId} == ${user.userId}" th:text="${game.answer}" />
+                                <span th:if="${#lists.contains(game.score.![users.userId], user.userId)}" th:text="${game.answer}" />
+                                <input type="hidden" name="encryptedAnswer" th:value="${game.encryptedAnswer}" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </blockquote>
+            <div th:unless="${game.users.userId} == ${user.userId} or ${#lists.contains(game.score.![users.userId], user.userId)}">
+                <input type="hidden" name="gameId" th:value="${game.gameId}" />
+                <input type="text" name="gameAnswer" class="quiz-input" spellcheck="false"/>
+            </div>
+        </div>
+
+        <div class="page" th:if="${games.totalPages > 1}">
+            <ul class="pagination modal">
+                <li th:if="${!games.first}">
+                    <a th:href="@{/quiz(page=0)}" class="first">첫 페이지</a>
+                </li>
+                <li th:if="${games.hasPrevious}">
+                    <a th:href="@{/quiz(page=${games.number - 1})}" class="arrow left">이전</a>
+                </li>
+                <li th:each="page : ${#numbers.sequence(0, games.totalPages - 1)}">
+                    <a th:href="@{/quiz(page=${page})}" th:text="${page + 1}"
+                       th:class="${page == games.number ? 'active num' : 'num'}"></a>
+                </li>
+                <li th:if="${games.hasNext}">
+                    <a th:href="@{/quiz(page=${games.number + 1})}" class="arrow right">다음</a>
+                </li>
+                <li th:if="${!games.last}">
+                    <a th:href="@{/quiz(page=${games.totalPages - 1})}" class="last">끝 페이지</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>
