@@ -14,10 +14,11 @@ $.fn.serializeObject = function() {
             if ($.isArray(node)) {
                 node.push(element.value);
             } else {
-                result[element.name] = [node, element.value];
+                result[element.name] = [node]
+                result[element.name].push(element.value);
             }
         } else {
-            result[element.name] = element.value;
+            result[element.name] = [element.value];
         }
     }
 
