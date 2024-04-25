@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers( "/", "/css/**", "/js/**")
+                .antMatchers( "/", "/join", "/css/**", "/js/**")
                 .permitAll() // 로그인 권한은 누구나, resources파일도 모든권한
                 .anyRequest().authenticated()
                 .and()
