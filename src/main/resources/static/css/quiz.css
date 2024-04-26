@@ -8,6 +8,12 @@ body {
     top: -70px;
     right: -40px;
 }
+.quiz-rank{
+    position: relative;
+    top: -115px;
+    left: 40px;
+    font-weight: bold;
+}
 blockquote{
   position: relative;
   display: inline-block;

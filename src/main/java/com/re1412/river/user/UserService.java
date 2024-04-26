@@ -2,11 +2,15 @@ package com.re1412.river.user;
 
 import com.re1412.river.game.GameRepository;
 import com.re1412.river.game.Games;
+import com.re1412.river.score.Score;
 import com.re1412.river.score.ScoreRepository;
+import com.re1412.river.score.UserScore;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,5 +42,16 @@ public class UserService {
             return optionalGames.get();
         }
         throw new EntityNotFoundException("User not found with id: " + userId);
+    }
+
+    public List<UserScore> userScoreList() {
+        List<Object[]> results = scoreRepository.userScoreList();
+        List<UserScore> userScores = new ArrayList<>();
+        for (Object[] result : results) {
+            Users users = (Users) result[0];
+            Long totalScore = (Long) result[1];
+            userScores.add(new UserScore(users, totalScore));
+        }
+        return userScores;
     }
 }

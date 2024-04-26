@@ -3,6 +3,7 @@ package com.re1412.river.game;
 import com.re1412.river.common.SHAEncryption;
 import com.re1412.river.hint.Hint;
 import com.re1412.river.score.Score;
+import com.re1412.river.score.UserScore;
 import com.re1412.river.user.UserInfo;
 import com.re1412.river.user.UserService;
 import com.re1412.river.user.Users;
@@ -35,9 +36,11 @@ public class GameController {
         Users user = (Users) authentication.getPrincipal();
         Page<Games> games = gameService.gameListAll(page);
         UserInfo userInfo = userService.userInfo(user.getUserId());
+        List<UserScore> scoreInfo = userService.userScoreList();
         model.addAttribute("games", games);
         model.addAttribute("user", user);
         model.addAttribute("userInfo", userInfo);
+        model.addAttribute("scoreInfo", scoreInfo);
 
         return "views/quiz/quizList";
     }
