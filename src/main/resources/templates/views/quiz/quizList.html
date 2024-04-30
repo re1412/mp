@@ -43,14 +43,18 @@
                         <div class="quiz-answer">
                             <span>정답 : <span name="plainAnswer"></span>
                                 <span th:if="${game.users.userId} == ${user.userId}" th:text="${game.answer}" />
-                                <span th:if="${#lists.contains(game.score.![users.userId], user.userId)}" th:text="${game.answer}" />
+                                <!--<span th:if="${#lists.contains(game.score.![users.userId], user.userId)}" th:text="${game.answer}" />-->
+                                <span th:if="${game.users.userId} != ${user.userId} and
+                                            ${game.score[0]} != null" th:text="${game.answer}" />
                                 <input type="hidden" name="encryptedAnswer" th:value="${game.encryptedAnswer}" />
                             </span>
                         </div>
                     </div>
                 </div>
             </blockquote>
-            <div th:unless="${game.users.userId} == ${user.userId} or ${#lists.contains(game.score.![users.userId], user.userId)}">
+            <div th:unless="${game.users.userId} == ${user.userId} or
+                            ${#lists.contains(game.score.![users.userId], user.userId)} or
+                            ${game.score[0]} != null">
                 <input type="hidden" name="gameId" th:value="${game.gameId}" />
                 <input type="text" name="gameAnswer" class="quiz-input" spellcheck="false"/>
             </div>
