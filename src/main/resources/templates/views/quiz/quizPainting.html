@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<head>
+    <title>한강 퀴즈 게임</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="content">
+        <div class="quiz-rank">
+            <span class="rank-text">누적 순위</span>
+            <span th:if="${scoreAllInfo} != null"
+                  th:each="info, infoStat : ${scoreAllInfo}"
+                  th:class="${'rank rank-' + __${infoStat.index + 1}__}">
+                <i class="fa-solid fa-medal"></i>
+                <span th:text="|${info.users.name}(${info.totalScore}점)|"></span>
+            </span>
+        </div>
+        <div class="quiz-rank">
+            <span class="rank-text">금일 순위</span>
+            <span th:if="${scoreTodayInfo} != null"
+                  th:each="info, infoStat : ${scoreTodayInfo}"
+                  th:class="${'rank rank-' + __${infoStat.index + 1}__}">
+                <i class="fa-solid fa-medal"></i>
+                <span th:text="|${info.users.name}(${info.totalScore}점)|"></span>
+            </span>
+        </div>
+        <div class="quiz-title">그림 퀴즈</div>
+        <div style="padding: 0px 40px 0px 40px; display: none;">
+            <div id="paintingNewForm">
+                <label for="attach" class="image-add-button">파일첨부</label>
+                <input type="file" id="attach" style="display:none;" accept="image/gif, image/jpeg, image/png" />
+                <span id="afterFileUrl" class="image-popup-fit-width" />
+            </div>
+            <div>
+                <input type="hidden" placeholder="질문" value="Question"/>
+                <input type="text" class="input-form" placeholder="정답" size="20" />
+                <button type="button" id="insertPainting" class="add-button">등록</button>
+            </div>
+        </div>
+        <div class="painting">
+
+        </div>
+        <div>
+            <input type="hidden" name="gameId" value="" />
+            <input type="text" name="gameAnswer" class="quiz-input" style="width: 680px!important;" spellcheck="false"/>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>

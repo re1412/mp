@@ -9,10 +9,28 @@ body {
     right: -40px;
 }
 .quiz-rank{
+    display: flex;
     position: relative;
     top: -115px;
     left: 40px;
     font-weight: bold;
+    margin-bottom: 5px;
+}
+.rank-text {
+    margin-right:20px;
+    color: mediumslateblue;
+}
+.quiz-rank .rank.rank-1 {
+    color: goldenrod;
+    margin-right: 20px;
+}
+.quiz-rank .rank.rank-2 {
+    color: darkgray;
+    margin-right: 20px;
+}
+.quiz-rank .rank.rank-3 {
+    color: brown;
+    margin-right: 20px;
 }
 blockquote{
   position: relative;
@@ -149,13 +167,17 @@ blockquote::after{
 }
 .add-button{
     position: relative;
-    padding: 0.50rem 1.25rem;
-    margin-top:80px;
+    padding: 5px 18px 7px;
     color: #fff;
     background: hsl(196, 78%, 61%);
-    border: 1px solid hsl(196, 78%, 61%);
+    border: 2px solid hsl(196, 78%, 61%);
     border-radius: 4px;
     white-space: nowrap;
     cursor: pointer;
 }
-
+.painting{
+    margin: 40px;
+    border: 1px solid #98A81B;
+    width: 700px;
+    height: 500px;
+}

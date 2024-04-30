@@ -13,6 +13,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -44,14 +45,25 @@ public class UserService {
         throw new EntityNotFoundException("User not found with id: " + userId);
     }
 
-    public List<UserScore> userScoreList() {
-        List<Object[]> results = scoreRepository.userScoreList();
+    public List<UserScore> scoreInTotalPoint(List<Object[]> scoreInfo){
+        // 상위 3건만 사용
+        List<Object[]> limited = scoreInfo.stream().limit(3).collect(Collectors.toList());
         List<UserScore> userScores = new ArrayList<>();
-        for (Object[] result : results) {
+        for (Object[] result : limited) {
             Users users = (Users) result[0];
             Long totalScore = (Long) result[1];
             userScores.add(new UserScore(users, totalScore));
         }
         return userScores;
+    }
+
+    public List<UserScore> userScoreList() {
+        List<Object[]> results = scoreRepository.userScoreList();
+        return scoreInTotalPoint(results);
+    }
+
+    public List<UserScore> userScoreTodayList() {
+        List<Object[]> results = scoreRepository.userScoreTodayList();
+        return scoreInTotalPoint(results);
     }
 }

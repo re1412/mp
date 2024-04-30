@@ -15,7 +15,16 @@ a { text-decoration-line: none; }
     padding: 0;
     cursor: pointer;
 }
-
+.input-form{
+    border-radius: 5px;
+    border: 2px solid #bde1c7;
+    min-width: 300px;
+    color: #000;
+    padding: 10px;
+    height: 12px;
+    background: #fff;
+    outline: none;
+}
 .page {
     text-align: center;
     width: 100%;

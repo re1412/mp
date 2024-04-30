@@ -16,4 +16,7 @@ public interface ScoreRepository extends JpaRepository<Score, Long> {
 
     @Query("SELECT s.users, SUM(s.scorePoint) AS totalScore FROM Score s GROUP BY s.users ORDER BY totalScore DESC")
     List<Object[]> userScoreList();
+
+    @Query("SELECT s.users, SUM(s.scorePoint) AS totalScore FROM Score s WHERE DATE(s.createdDate) = CURDATE() GROUP BY s.users ORDER BY totalScore DESC")
+    List<Object[]> userScoreTodayList();
 }

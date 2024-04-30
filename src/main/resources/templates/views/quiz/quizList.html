@@ -9,18 +9,24 @@
 <th:block layout:fragment="content">
     <div class="content">
         <div class="quiz-rank">
-            <span style="margin-right:20px; color: mediumslateblue;">점수 순위</span>
-            <span style="margin-right:20px; color: goldenrod;"><i class="fa-solid fa-medal"></i>
-                <span th:text="|${scoreInfo[0].users.name}(${scoreInfo[0].totalScore}점)|"></span>
-            </span>
-            <span style="margin-right:20px; color: darkgray;"><i class="fa-solid fa-medal"></i>
-                <span th:text="|${scoreInfo[1].users.name}(${scoreInfo[1].totalScore}점)|"></span>
-            </span>
-            <span style="margin-right:20px; color: brown;"><i class="fa-solid fa-medal"></i>
-                <span th:text="|${scoreInfo[2].users.name}(${scoreInfo[2].totalScore}점)|"></span>
+            <span class="rank-text">누적 순위</span>
+            <span th:if="${scoreAllInfo} != null"
+                  th:each="info, infoStat : ${scoreAllInfo}"
+                  th:class="${'rank rank-' + __${infoStat.index + 1}__}">
+                <i class="fa-solid fa-medal"></i>
+                <span th:text="|${info.users.name}(${info.totalScore}점)|"></span>
             </span>
         </div>
-        <div class="quiz-title">Quiz</div>
+        <div class="quiz-rank">
+            <span class="rank-text">금일 순위</span>
+            <span th:if="${scoreTodayInfo} != null"
+                  th:each="info, infoStat : ${scoreTodayInfo}"
+                  th:class="${'rank rank-' + __${infoStat.index + 1}__}">
+                <i class="fa-solid fa-medal"></i>
+                <span th:text="|${info.users.name}(${info.totalScore}점)|"></span>
+            </span>
+        </div>
+        <div class="quiz-title">일반 퀴즈</div>
         <div th:each="game : ${games.content}" class="quiz-form">
             <span class="quiz-creator" th:text="|출제자 : ${game.users.name}|" />
             <blockquote>

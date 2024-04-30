@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Getter
@@ -27,4 +28,7 @@ public class Score {
 
     @Column(name = "score_point")
     private Integer scorePoint;
+
+    @Column(name = "created_date")
+    private Timestamp createdDate;
 }

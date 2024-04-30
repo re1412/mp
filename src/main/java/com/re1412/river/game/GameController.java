@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,13 +37,29 @@ public class GameController {
         Users user = (Users) authentication.getPrincipal();
         Page<Games> games = gameService.gameListAll(page);
         UserInfo userInfo = userService.userInfo(user.getUserId());
-        List<UserScore> scoreInfo = userService.userScoreList();
+        List<UserScore> scoreAllInfo = userService.userScoreList();
+        List<UserScore> scoreTodayInfo = userService.userScoreTodayList();
         model.addAttribute("games", games);
         model.addAttribute("user", user);
         model.addAttribute("userInfo", userInfo);
-        model.addAttribute("scoreInfo", scoreInfo);
+        model.addAttribute("scoreAllInfo", scoreAllInfo);
+        model.addAttribute("scoreTodayInfo", scoreTodayInfo);
 
         return "views/quiz/quizList";
+    }
+
+    @GetMapping("/painting")
+    public String painting(Model model, Authentication authentication){
+        Users user = (Users) authentication.getPrincipal();
+        UserInfo userInfo = userService.userInfo(user.getUserId());
+        List<UserScore> scoreAllInfo = userService.userScoreList();
+        List<UserScore> scoreTodayInfo = userService.userScoreTodayList();
+        model.addAttribute("user", user);
+        model.addAttribute("userInfo", userInfo);
+        model.addAttribute("scoreAllInfo", scoreAllInfo);
+        model.addAttribute("scoreTodayInfo", scoreTodayInfo);
+
+        return "views/quiz/quizPainting";
     }
 
     @GetMapping("/quiz/new")
@@ -150,6 +167,7 @@ public class GameController {
             Score score = new Score();
             Users user = userService.findUser(quiz.userId);
             score.setUsers(user);
+            score.setCreatedDate(new Timestamp(System.currentTimeMillis()));
 
             Games game = gameService.findGame(quiz);
             if (game.getSolver() == null) {
@@ -163,8 +181,8 @@ public class GameController {
                 Users solvedUser = userService.findUser(game.getSolver());
                 resultMap.put("solver", solvedUser.getName());
                 resultMap.put("answer", game.getAnswer());
-                resultMap.put("point", "1");
-                score.setScorePoint(1);
+                resultMap.put("point", "0");
+                return resultMap;
             }
             score.setGames(game);
 
