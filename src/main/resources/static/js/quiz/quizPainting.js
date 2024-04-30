@@ -4,7 +4,7 @@ $(document).on('change', '#attach', function(){
     $(this).next('span').text(fileName);
 });
 
-$(document).on('click', '.menu-link', function(){
+$(document).on('click', '#dev', function(){
     alert('시간날 때 추가함');
 });
 
